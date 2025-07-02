@@ -1,0 +1,27 @@
+[workspace]
+default-members = ["./html-node*"]
+members = ["./html-node*"]
+resolver = "2"
+
+    [workspace.package]
+    authors = ["Vidhan Bhatt <me@vidhan.io>"]
+    categories = ["template-engine"]
+    description = "A html to node macro powered by rstml."
+    edition = "2021"
+    homepage = "https://github.com/vidhanio/html-node"
+    keywords = ["html", "macro", "rstml"]
+    license = "MIT"
+    readme = "README.md"
+    repository = "https://github.com/vidhanio/html-node"
+    version = "0.5.0"
+
+    [workspace.lints]
+        [workspace.lints.rust]
+        missing_copy_implementations = "warn"
+        missing_debug_implementations = "warn"
+        missing_docs = "warn"
+        unsafe_code = "forbid"
+
+        [workspace.lints.clippy]
+        nursery = "warn"
+        pedantic = "warn"

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width" name="viewport">
+        <title>
+            Sparks Blog
+        </title>
+        <base href="/">
+        <link href="styles/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <link href="styles/site.min.css" rel="stylesheet">
+        <link href="styles/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <script type="module"> import init, { add } from './pkg/hello_wasm_site.js'; async function run() { await init(); } run(); </script>
+        <div class="page">
+            <nav class="navbar navbar-inverse container">
+                <a class="navbar-brand" href="#">
+                    Collin Sparks Portfolio
+                </a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href=""> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog"> Blog </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about"> About </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="navbar-underline">
+            </div>
+            <main>
+                <article class="body-content">
+                    <div class="container-fluid">
+                        <section class="row" id="article-title-section">
+                            <section class="col-md-12 text-center">
+                                <h1>
+                                    Newton's Cradle Sim in a Browser
+                                </h1>
+                            </section>
+                            <section class="col-md-12 text-center">
+                                <h3>
+                                    Posted: 
+                                    11/08/2023
+                                </h3>
+                            </section>
+                        </section>
+                        <section class="row" id="article-content-section">
+                            <section class="col-md-4 offset-md-4">
+                                <div>
+                                    <p>I've been playing around with Bevy and learning to use it recently. I'm still working on creating a game with Bevy and I hope to post here about that soon. In the meantime I've been making smaller toys that are fun to build and, hopefully, also fun to play with.</p>
+                                    <p>The first toy I have made in Bevy that I want to share is my Newton's Cradle Simulation. Part of what makes Bevy so interesting for projects like this is that it is simple and easy to run simple Bevy projects in the browser.</p>
+                                    <p>If you wanted to build this project yourself you absolutely could. The github repository for it is right <a href="https://github.com/Sorrien/newtons_cradle">here</a>. If I were so inclined I could also make executables available to everyone and distribute it that way. That takes some trust on your part and more effort on mine to build out pipelines for various platforms.</p>
+                                    <p>The beauty of Bevy's ability to compile to Web Assembly is that I don't need to worry about any of that. You have had the ability to play with my newton's cradle from this web page this whole time. That is assuming of course that you are not reading this on your phone, unfortunately.</p>
+                                    <p>Go ahead, click play. I'll be right below when you get bored with it, and please: turn on your sound. I spent a long time tuning the clicks and clacks.</p>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                      <iframe class="embed-responsive-item" src="https://sorrien.github.io/newtons_cradle/"></iframe>
+                                    </div>
+                                    <p>I hope that was as entertaining to play with as it was to write. This version is embedded in an iframe but if you'd like to see the original page you can find it <a href="https://sorrien.github.io/newtons_cradle/">here</a>.</p>
+                                    <p>Growing up I played a lot of silly Flash games of a similar scope to this. For those that really enjoy using Javascript it may not seem like a big deal to use an HTML canvas for a game. I have never really enjoyed writing Javascript and Web Assembly will let you write your game in any language. This blog is currently running in C# with Blazor and the Newton's Cradle sim is running in Rust with Bevy. My favorite thing about this blog is that there is no scripts folder and no JS written by me whatsoever.</p>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                </article>
+                <footer class="container-fluid" id="footer-bottom">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <ul class="list-inline" id="social-media">
+                                <li class="list-inline-item">
+                                    <a href="https://www.linkedin.com/in/collin-sparks-b6065953/" rel="noreferrer" target="_blank" alt="Linkedin">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-linkedin fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://github.com/Sorrien" rel="noreferrer" target="_blank" alt="Github">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-github-alt fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/feed.xml" rel="noreferrer" target="_blank" alt="RSS">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-rss fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="copyright">
+                                <p>
+                                    <span class="fa fa-copyright">
+                                    </span>
+                                    2025
+                                     - Collin Sparks 
+                                </p>
+                                <p id="disclaimer">
+                                    Disclaimer: Opinions expressed are solely my own and do not express the views or opinions of my employer.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </body>
+</html>

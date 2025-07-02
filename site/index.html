@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width" name="viewport">
+        <title>
+            Sparks Blog
+        </title>
+        <base href="/">
+        <link href="styles/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <link href="styles/site.min.css" rel="stylesheet">
+        <link href="styles/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <script type="module"> import init, { add } from './pkg/hello_wasm_site.js'; async function run() { await init(); } run(); </script>
+        <div class="page">
+            <nav class="navbar navbar-inverse container">
+                <a class="navbar-brand" href="#">
+                    Collin Sparks Portfolio
+                </a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="" aria-current="page"> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog"> Blog </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about"> About </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="navbar-underline">
+            </div>
+            <main>
+                <article class="body-content">
+                    <script type="module">
+                        
+                                import init from "./wgpu-scenery/pkg/wgpu_scenery.js";
+                                init().then(() => {
+                                    console.log("WASM Loaded");
+                                });
+                        
+                            
+                    </script>
+                    <section class="container-fluid">
+                        <div class="row" style="padding-top:0px;padding-bottom:0px;">
+                            <section class="col-md-12" style="padding-left:0px;padding-right:0px;">
+                                <div id="wasm-example" style="height:900px;background: url('/images/nature_scene_demo.jpg') no-repeat center center scroll;
+                                    background-size: cover;">
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                    <section class="container-fluid" id="introduction-section">
+                        <div class="row">
+                            <section class="col-md-8 offset-md-2 title-summary">
+                                <h2>
+                                    My name is Collin Sparks and I am a Software Developer.
+                                </h2>
+                                <p>
+                                    I am based in Georgia and I have worked professionally as a Software Developer for 
+                                    8
+                                     years. My passion for programming has led me to learn a wide variety of frameworks and platforms. You can learn more about me on my 
+                                    <a href="about">
+                                        about
+                                    </a>
+                                     page.
+                                </p>
+                            </section>
+                        </div>
+                    </section>
+                </article>
+                <footer class="container-fluid" id="footer-bottom">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <ul class="list-inline" id="social-media">
+                                <li class="list-inline-item">
+                                    <a href="https://www.linkedin.com/in/collin-sparks-b6065953/" rel="noreferrer" target="_blank" alt="Linkedin">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-linkedin fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://github.com/Sorrien" rel="noreferrer" target="_blank" alt="Github">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-github-alt fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/feed.xml" rel="noreferrer" target="_blank" alt="RSS">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-rss fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="copyright">
+                                <p>
+                                    <span class="fa fa-copyright">
+                                    </span>
+                                    2025
+                                     - Collin Sparks 
+                                </p>
+                                <p id="disclaimer">
+                                    Disclaimer: Opinions expressed are solely my own and do not express the views or opinions of my employer.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </body>
+</html>

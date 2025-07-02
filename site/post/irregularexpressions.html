@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width" name="viewport">
+        <title>
+            Sparks Blog
+        </title>
+        <base href="/">
+        <link href="styles/bootstrap.min.css" rel="stylesheet">
+        <link href="styles/normalize.css" rel="stylesheet">
+        <link href="styles/site.min.css" rel="stylesheet">
+        <link href="styles/font-awesome.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <script type="module"> import init, { add } from './pkg/hello_wasm_site.js'; async function run() { await init(); } run(); </script>
+        <div class="page">
+            <nav class="navbar navbar-inverse container">
+                <a class="navbar-brand" href="#">
+                    Collin Sparks Portfolio
+                </a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href=""> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog"> Blog </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about"> About </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="navbar-underline">
+            </div>
+            <main>
+                <article class="body-content">
+                    <div class="container-fluid">
+                        <section class="row" id="article-title-section">
+                            <section class="col-md-12 text-center">
+                                <h1>
+                                    Irregular Expressions
+                                </h1>
+                            </section>
+                            <section class="col-md-12 text-center">
+                                <h3>
+                                    Posted: 
+                                    03/05/2025
+                                </h3>
+                            </section>
+                        </section>
+                        <section class="row" id="article-content-section">
+                            <section class="col-md-4 offset-md-4">
+                                <div>
+                                    <h1>When Expressions Are Not Regular</h1>
+                                    <p>Often if you are evaluating a string like an email, phone number or even a password then a regular expression is a great choice. I have used RegEx in this capacity many times but sometimes I reach for this tool when something else would be a much better fit. The best example I can think of is evaluating code with RegEx.
+                                    If your problem is simple enough you can get away with doing this but once you need something like a nested pattern it will become complicated very quickly. Regular Expressions are usually implemented as Finite Automata which cannot support a potentially infinite state like the nesting we see in our programming languages.
+                                    If your RegEx implementation uses backtracking then it is possible to write a nested pattern but backtracking is slow and not all RegEx implementations support it. So, if you need to evaluate a string of code with nested brackets or parenthesis what can you do? You can implement a toy parser.</p>
+                                    <h1>Parsers Are Easier Than You Think</h1>
+                                    <p>Writing a parser just to evaluate some code for a simple string replacement probably sounds like a lot of work. It might be, depending on your needs, but if you're hacking something together just for your own use case it's not that hard. In my case I needed a tool to automate transitioning from the Classic Asserts of NUnit 3 to NUnit 4's new Assert.That syntax.
+                                    At first I spent a lot of time trying to solve this problem with RegEx and initially it worked fine. Right up until I ran into Asserts that took the results of methods as parameters. Now I needed to handle capturing up until a close parenthesis unless another open parenthesis had appeared. This is where I encountered the issue of finite state automata not handling infinitely nested patterns.
+                                    My new approach involves searching for the beginning of my Assert string eg. "Assert.AreEqual(" and then counting the number of parenthesis that are currently open. Once a comma is encountered I'll know based on how many open parenthesis we have whether or not this is still part of the same parameter or a new one.</p>
+                                    <p>In this way we can grab all of the parameters to the function and then handle outputting our new string. So Assert.AreEqual(actual, expected); becomes Assert.That(expected, Is.EqualTo(actual)); A side note: NUnit also flipped the order of parameters for actual vs expected in the new syntax. This new approach can easily handle my use case of replacing the old asserts with the new ones while also being performant and easy to read.
+                                    If you would like to check out the code or use the tool for yourself you can find it <a href="https://github.com/Sorrien/nunit_update_utility">here</a></p>
+                                    <pre style="background-color:#2b303b;">
+                                    <span style="color:#c0c5ce;">         </span><span style="color:#b48ead;">for</span><span style="color:#c0c5ce;"> next_char in &amp;chars[i..] {
+                                    </span><span style="color:#c0c5ce;">            </span><span style="color:#b48ead;">match </span><span style="color:#c0c5ce;">*next_char {
+                                    </span><span style="color:#c0c5ce;">                &#39;</span><span style="color:#a3be8c;">(</span><span style="color:#c0c5ce;">&#39; =&gt; {
+                                    </span><span style="color:#c0c5ce;">                    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> parenthesis_depth &gt; </span><span style="color:#d08770;">0 </span><span style="color:#c0c5ce;">{
+                                    </span><span style="color:#c0c5ce;">                        parameter.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(*next_char);
+                                    </span><span style="color:#c0c5ce;">                    }
+                                    </span><span style="color:#c0c5ce;">                    parenthesis_depth += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+                                    </span><span style="color:#c0c5ce;">                }
+                                    </span><span style="color:#c0c5ce;">                &#39;</span><span style="color:#a3be8c;">)</span><span style="color:#c0c5ce;">&#39; =&gt; {
+                                    </span><span style="color:#c0c5ce;">                    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> parenthesis_depth == </span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">{
+                                    </span><span style="color:#c0c5ce;">                        parameters.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(parameter.</span><span style="color:#96b5b4;">clone</span><span style="color:#c0c5ce;">());
+                                    </span><span style="color:#c0c5ce;">                        parameter.</span><span style="color:#96b5b4;">clear</span><span style="color:#c0c5ce;">();
+                                    </span><span style="color:#c0c5ce;">                    } </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{
+                                    </span><span style="color:#c0c5ce;">                        parameter.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(*next_char);
+                                    </span><span style="color:#c0c5ce;">                        parenthesis_depth -= </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+                                    </span><span style="color:#c0c5ce;">                    }
+                                    </span><span style="color:#c0c5ce;">                }
+                                    </span><span style="color:#c0c5ce;">                &#39;</span><span style="color:#a3be8c;">,</span><span style="color:#c0c5ce;">&#39; =&gt; {
+                                    </span><span style="color:#c0c5ce;">                    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> parenthesis_depth == </span><span style="color:#d08770;">1 </span><span style="color:#c0c5ce;">{
+                                    </span><span style="color:#c0c5ce;">                        parameters.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(parameter.</span><span style="color:#96b5b4;">clone</span><span style="color:#c0c5ce;">());
+                                    </span><span style="color:#c0c5ce;">                        parameter.</span><span style="color:#96b5b4;">clear</span><span style="color:#c0c5ce;">();
+                                    </span><span style="color:#c0c5ce;">                        </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> chars[i + </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">].</span><span style="color:#96b5b4;">is_ascii_whitespace</span><span style="color:#c0c5ce;">() {
+                                    </span><span style="color:#c0c5ce;">                            i += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+                                    </span><span style="color:#c0c5ce;">                        }
+                                    </span><span style="color:#c0c5ce;">                    } </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{
+                                    </span><span style="color:#c0c5ce;">                        parameter.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(*next_char);
+                                    </span><span style="color:#c0c5ce;">                    }
+                                    </span><span style="color:#c0c5ce;">                }
+                                    </span><span style="color:#c0c5ce;">                &#39;</span><span style="color:#a3be8c;">;</span><span style="color:#c0c5ce;">&#39; =&gt; {
+                                    </span><span style="color:#c0c5ce;">                    </span><span style="color:#b48ead;">break</span><span style="color:#c0c5ce;">;
+                                    </span><span style="color:#c0c5ce;">                }
+                                    </span><span style="color:#c0c5ce;">                _ =&gt; {
+                                    </span><span style="color:#c0c5ce;">                    </span><span style="color:#b48ead;">if</span><span style="color:#c0c5ce;"> in_angle_brackets {
+                                    </span><span style="color:#c0c5ce;">                        generic.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(*next_char);
+                                    </span><span style="color:#c0c5ce;">                    } </span><span style="color:#b48ead;">else </span><span style="color:#c0c5ce;">{
+                                    </span><span style="color:#c0c5ce;">                        parameter.</span><span style="color:#96b5b4;">push</span><span style="color:#c0c5ce;">(*next_char);
+                                    </span><span style="color:#c0c5ce;">                    }
+                                    </span><span style="color:#c0c5ce;">                }
+                                    </span><span style="color:#c0c5ce;">            }
+                                    </span><span style="color:#c0c5ce;">
+                                    </span><span style="color:#c0c5ce;">            i += </span><span style="color:#d08770;">1</span><span style="color:#c0c5ce;">;
+                                    </span><span style="color:#c0c5ce;">        }
+                                    </span></pre>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                </article>
+                <footer class="container-fluid" id="footer-bottom">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <ul class="list-inline" id="social-media">
+                                <li class="list-inline-item">
+                                    <a href="https://www.linkedin.com/in/collin-sparks-b6065953/" rel="noreferrer" target="_blank" alt="Linkedin">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-linkedin fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://github.com/Sorrien" rel="noreferrer" target="_blank" alt="Github">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-github-alt fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="/feed.xml" rel="noreferrer" target="_blank" alt="RSS">
+                                        <span class="fa-stack 1x" aria-hidden="true">
+                                            <i class="fa fa-circle fa-stack-2x media-icon-background">
+                                            </i>
+                                            <i class="fa fa-rss fa-stack-1x">
+                                            </i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="copyright">
+                                <p>
+                                    <span class="fa fa-copyright">
+                                    </span>
+                                    2025
+                                     - Collin Sparks 
+                                </p>
+                                <p id="disclaimer">
+                                    Disclaimer: Opinions expressed are solely my own and do not express the views or opinions of my employer.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </body>
+</html>
