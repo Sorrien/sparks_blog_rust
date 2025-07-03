@@ -77,7 +77,7 @@ pub fn gen_feed_xml(
 
             writer.write(xml::writer::XmlEvent::start_element("link"))?;
             writer.write(xml::writer::XmlEvent::characters(
-                format!("{}/post/{}", base_url, article.id).as_str(),
+                format!("{}post/{}", base_url, article.id).as_str(),
             ))?;
             writer.write(xml::writer::XmlEvent::end_element())?;
 
@@ -226,7 +226,7 @@ pub fn get_index_page() -> String {
     <section class="container-fluid">
         <div class="row" style="padding-top:0px;padding-bottom:0px;">
             <section class="col-md-12" style="padding-left:0px;padding-right:0px;">
-                <div id="wasm-example" style="height:900px;background: url('/images/nature_scene_demo.jpg') no-repeat center center scroll;
+                <div id="wasm-example" style="height:900px;background: url('images/nature_scene_demo.jpg') no-repeat center center scroll;
     background-size: cover;"></div>
             </section>
         </div>

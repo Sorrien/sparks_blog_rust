@@ -8,7 +8,7 @@ pub fn base_page(body: html_node::Node) -> Node {
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width" />
           <title>Sparks Blog</title>
-          <base href="/" />
+          <base href="/"/>
           //<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
           <link href="styles/bootstrap.min.css" rel="stylesheet" />
           <link href="styles/normalize.css" rel="stylesheet" />
